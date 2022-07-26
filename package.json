@@ -1,0 +1,28 @@
+{
+  "name": "s5cmd-action",
+  "version": "1.0.0",
+  "description": "Setup s5cmd on GitHub Actions runners",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build index.js --license LICENSE"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derekn/s5cmd-action.git"
+  },
+  "keywords": [],
+  "author": "Derek Nicol",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/derekn/s5cmd-action/issues"
+  },
+  "homepage": "https://github.com/derekn/s5cmd-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.9.0",
+    "@actions/tool-cache": "^2.0.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.34.0"
+  }
+}

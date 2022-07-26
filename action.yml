@@ -1,0 +1,10 @@
+name: s5cmd
+description: Setup s5cmd on GitHub Actions runners
+inputs:
+  version:
+    description: Version of s5cmd to install
+    required: false
+    default: 2.0.0
+runs:
+  using: node16
+  main: dist/index.js
