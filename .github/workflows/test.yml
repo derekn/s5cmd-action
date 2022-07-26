@@ -1,0 +1,36 @@
+name: s5cmd-setup test
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  test-linux:
+    name: Test Linux
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup s5cmd
+        uses: derekn/s5cmd-action@v1
+      - run: s5cmd version
+
+  test-macos:
+    name: Test macOS
+    runs-on: macos-latest
+
+    steps:
+      - name: Setup s5cmd
+        uses: derekn/s5cmd-action@v1
+      - run: s5cmd version
+
+  test-windows:
+    name: Test Windows
+    runs-on: windows-latest
+
+    steps:
+      - name: Setup s5cmd
+        uses: derekn/s5cmd-action@v1
+      - run: s5cmd version
