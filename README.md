@@ -11,9 +11,9 @@ The version of s5cmd to download.
 ## Example usage
 
 ```yaml
-uses: derekn/s5cmd-action@v1
+uses: derekn/s5cmd-action@v2
 with:
-  version: 2.0.0
+  version: 2.2.2
 ```
 
 ---
