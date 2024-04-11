@@ -1,6 +1,6 @@
 {
   "name": "s5cmd-action",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Setup s5cmd on GitHub Actions runners",
   "main": "index.js",
   "scripts": {
