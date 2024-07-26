@@ -1,4 +1,4 @@
-name: s5cmd-setup test
+name: Tests
 
 on:
   workflow_dispatch:
@@ -8,29 +8,23 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test-linux:
-    name: Test Linux
-    runs-on: ubuntu-latest
+  test:
+    name: Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, 'macos-latest']
+      fail-fast: false
 
     steps:
-      - name: Setup s5cmd
-        uses: istation-devops/s5cmd-action@latest
-      - run: s5cmd version
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  test-macos:
-    name: Test macOS
-    runs-on: macos-latest
+      - name: Setup
+        uses: ./
 
-    steps:
-      - name: Setup s5cmd
-        uses: istation-devops/s5cmd-action@latest
-      - run: s5cmd version
-
-  test-windows:
-    name: Test Windows
-    runs-on: windows-latest
-
-    steps:
-      - name: Setup s5cmd
-        uses: istation-devops/s5cmd-action@latest
-      - run: s5cmd version
+      - name: Run
+        shell: bash
+        run: |
+          version=$(s5cmd version)
+          echo "::notice::$version"

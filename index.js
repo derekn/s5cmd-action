@@ -17,14 +17,13 @@ async function setup() {
 		const pathToCLI = await extract(pathToTarball);
 
 		// Expose the tool by adding it to the PATH
-		// core.addPath(path.join(pathToCLI, download.binPath));
 		core.addPath(pathToCLI);
 	} catch (e) {
 		core.setFailed(e);
 	}
 }
 
-module.exports = setup
+module.exports = setup;
 
 if (require.main === module) {
 	setup();
