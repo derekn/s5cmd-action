@@ -6,7 +6,7 @@ Setup [s5cmd](https://github.com/peak/s5cmd) command on GitHub Actions runners.
 
 ### `version`
 
-The version of s5cmd to download.
+The version of s5cmd to download, optional. Leave blank for latest.
 
 ## Example usage
 
