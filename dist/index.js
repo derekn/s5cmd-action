@@ -23,14 +23,13 @@ async function setup() {
 		const pathToCLI = await extract(pathToTarball);
 
 		// Expose the tool by adding it to the PATH
-		// core.addPath(path.join(pathToCLI, download.binPath));
 		core.addPath(pathToCLI);
 	} catch (e) {
 		core.setFailed(e);
 	}
 }
 
-module.exports = setup
+module.exports = setup;
 
 if (require.main === require.cache[eval('__filename')]) {
 	setup();
@@ -45,43 +44,38 @@ if (require.main === require.cache[eval('__filename')]) {
 const os = __nccwpck_require__(2037);
 const path = __nccwpck_require__(1017);
 
-// arch in [arm, x32, x64...] (https://nodejs.org/api/os.html#os_os_arch)
-// return value in [amd64, 386, arm]
 function mapArch(arch) {
 	const mappings = {
 		x32: '32bit',
 		x64: '64bit',
 		arm: 'armv6',
-		arm64: 'arm64'
+		arm64: 'arm64',
 	};
 	return mappings[arch] || arch;
 }
 
-// os in [darwin, linux, win32...] (https://nodejs.org/api/os.html#os_os_platform)
-// return value in [darwin, linux, windows]
 function mapOS(os) {
 	const mappings = {
 		linux: 'Linux',
 		darwin: 'macOS',
-		win32: 'Windows'
+		win32: 'Windows',
 	};
 	return mappings[os] || os;
 }
 
 function getDownloadObject(version) {
 	const platform = os.platform();
-	const filename = `s5cmd_${ version }_${ mapOS(platform) }-${ mapArch(os.arch()) }`;
-	const extension = (platform === 'win32') ? 'zip' : 'tar.gz';
-	// const binPath = (platform === 'win32') ? 'bin' : path.join(filename, 'bin');
+	const filename = `s5cmd_${version}_${mapOS(platform)}-${mapArch(os.arch())}`;
+	const extension = platform === 'win32' ? 'zip' : 'tar.gz';
 	const binPath = '';
-	const url = `https://github.com/peak/s5cmd/releases/download/v${ version }/${ filename }.${ extension }`;
+	const url = `https://github.com/peak/s5cmd/releases/download/v${version}/${filename}.${extension}`;
 	return {
 		url,
-		binPath
+		binPath,
 	};
 }
 
-module.exports = { getDownloadObject }
+module.exports = { getDownloadObject };
 
 
 /***/ }),
