@@ -4,7 +4,7 @@ inputs:
   version:
     description: Version of s5cmd to install
     required: false
-    default: 2.2.2
+    default: 2.3.0
 runs:
   using: node20
   main: dist/index.js
