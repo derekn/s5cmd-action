@@ -6,5 +6,5 @@ inputs:
     required: false
     default: 2.3.0
 runs:
-  using: node20
+  using: node22
   main: dist/index.js
