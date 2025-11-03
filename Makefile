@@ -4,4 +4,4 @@ build:
 	@npm run build
 
 lint:
-	@prettier --check action.yml index.js lib
+	@prettier --check action.yml index.mjs
