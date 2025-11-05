@@ -13,7 +13,7 @@ The version of s5cmd to download, optional. Leave blank for latest.
 ```yaml
 uses: derekn/s5cmd-action@v3 # or @latest
 with:
-  version: 2.3.0 # optional
+  version: 2.3.0 # optional, default latest
 ```
 
 ---

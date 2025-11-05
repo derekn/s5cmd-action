@@ -1,5 +1,7 @@
 name: s5cmd
-description: Setup s5cmd on GitHub Actions runners
+description: Setup s5cmd cli on GitHub Actions runners
+icon: upload-cloud
+color: purple
 
 inputs:
   version:
