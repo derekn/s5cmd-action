@@ -1,7 +1,13 @@
 import * as core from '@actions/core'
 import * as tool from '@actions/tool-cache'
+import { Octokit } from 'octokit'
 
-function getDownloadUrl(version) {
+async function getDownloadUrl(version) {
+	if (version === 'latest') {
+		const octokit = new Octokit()
+		const release = await octokit.rest.repos.getLatestRelease({ owner: 'peak', repo: 's5cmd' })
+		version = release.data.tag_name.replace(/^v/, '')
+	}
 	const platform = { linux: 'Linux', darwin: 'macOS', win32: 'Windows' }[process.platform]
 	const arch = { x32: '32bit', x64: '64bit', arm: 'armv6', arm64: 'arm64' }[process.arch]
 	const filename = `s5cmd_${version}_${platform}-${arch}`
@@ -11,11 +17,11 @@ function getDownloadUrl(version) {
 
 try {
 	const version = core.getInput('version', { required: true })
-	const downloadUrl = getDownloadUrl(version)
+	const downloadUrl = await getDownloadUrl(version)
 	const archive = await tool.downloadTool(downloadUrl)
 	const extract = downloadUrl.endsWith('.zip') ? tool.extractZip : tool.extractTar
-	const pathToCLI = await extract(archive)
-	core.addPath(pathToCLI)
+	const toolPath = await extract(archive)
+	core.addPath(toolPath)
 } catch (err) {
 	core.setFailed(String(err))
 }
